@@ -1,4 +1,8 @@
 package ekonsoft.cmd.dataAccess.abstracts;
 
-public class ServersDao {
+import ekonsoft.cmd.entities.concretes.Servers;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ServersDao extends JpaRepository<Servers,Integer> {
+    Servers getById(int id);
 }

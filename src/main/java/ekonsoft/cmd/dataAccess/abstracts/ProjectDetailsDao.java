@@ -1,4 +1,9 @@
 package ekonsoft.cmd.dataAccess.abstracts;
 
-public class ProjectDetailsDao {
+import ekonsoft.cmd.entities.concretes.ProjectDetails;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProjectDetailsDao extends JpaRepository<ProjectDetails, Integer> {
+
+    ProjectDetails getById(int id);
 }

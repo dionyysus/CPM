@@ -27,7 +27,7 @@ public class RelatedPersons {
     @NotNull
     private String phone;
 
-    @ManyToOne()
-    @JoinColumn(name = "project_id")
+    @ManyToOne
+    @JoinColumn(name = "project_id" ,nullable=false)
     private ProjectDetails projectDetails;
 }
