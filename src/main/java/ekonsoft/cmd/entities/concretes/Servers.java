@@ -1,7 +1,8 @@
-package ekonsoft.cmd.entities;
+package ekonsoft.cmd.entities.concretes;
 
 
 import com.sun.istack.NotNull;
+import ekonsoft.cmd.entities.concretes.ProjectDetails;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -45,6 +46,6 @@ public class Servers {
     private String panelAdress;
 
     @ManyToOne()
-    @JoinColumn(name = "project_details")
+    @JoinColumn(name = "project_id")
     private ProjectDetails projectDetails;
 }

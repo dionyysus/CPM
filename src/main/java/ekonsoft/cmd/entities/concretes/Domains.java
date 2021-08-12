@@ -1,4 +1,4 @@
-package ekonsoft.cmd.entities;
+package ekonsoft.cmd.entities.concretes;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -24,6 +24,6 @@ public class Domains {
     private String domainRegistration;
 
     @ManyToOne()
-    @JoinColumn(name = "project_details")
+    @JoinColumn(name = "project_id")
     private ProjectDetails projectDetails;
 }

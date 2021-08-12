@@ -10,4 +10,5 @@ public class CmdApplication {
         SpringApplication.run(CmdApplication.class, args);
     }
 
+
 }

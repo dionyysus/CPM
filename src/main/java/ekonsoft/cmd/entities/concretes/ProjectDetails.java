@@ -1,4 +1,4 @@
-package ekonsoft.cmd.entities;
+package ekonsoft.cmd.entities.concretes;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -45,8 +45,6 @@ public class ProjectDetails {
     @NotNull
     private String info;
 
-    @OneToMany(mappedBy = "projectDetails")
-    private List<Customers> customers;
 
     @OneToMany(mappedBy = "projectDetails")
     private List<Domains> domains;
@@ -63,4 +61,7 @@ public class ProjectDetails {
     @OneToMany(mappedBy = "projectDetails")
     private List<WebPanels> webPanels;
 
+    @ManyToOne()
+    @JoinColumn(name = "customer_id")
+    private Customers customers;
 }

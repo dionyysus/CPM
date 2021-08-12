@@ -1,32 +1,35 @@
-package ekonsoft.cmd.entities;
+package ekonsoft.cmd.entities.concretes;
 
 import com.sun.istack.NotNull;
+import ekonsoft.cmd.entities.concretes.ProjectDetails;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
 @Data
-@Table(name = "related_persons")
+@Entity
+@Table(name = "web_panels")
 @AllArgsConstructor
 @NoArgsConstructor
-public class RelatedPersons {
+public class WebPanels {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "related_id")
+    @Column(name = "web_panel_id")
     private int id;
 
-    @Column(name = "related_name")
+    @Column(name = "username")
     @NotNull
-    private String name;
+    private String username;
 
-    @Column(name = "related_phone")
+    @Column(name = "web_panel_password")
     @NotNull
-    private String phone;
+    private String password;
 
     @ManyToOne()
-    @JoinColumn(name = "project_details")
+    @JoinColumn(name = "project_id")
     private ProjectDetails projectDetails;
+
 }

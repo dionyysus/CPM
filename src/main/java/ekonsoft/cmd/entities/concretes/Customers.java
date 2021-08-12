@@ -1,12 +1,12 @@
-package ekonsoft.cmd.entities;
+package ekonsoft.cmd.entities.concretes;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -28,9 +28,8 @@ public class Customers {
     @NotNull
     private String address;
 
-    @ManyToOne()
-    @JoinColumn(name = "project_details")
-    private ProjectDetails projectDetails;
+    @OneToMany(mappedBy = "customers")
+    private List<ProjectDetails> projectDetails;
 
 
 }
