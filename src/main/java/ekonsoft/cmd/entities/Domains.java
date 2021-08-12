@@ -16,7 +16,7 @@ public class Domains {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "domain_id")
-    private int domainId;
+    private int id;
 
     private String domainRegistration;
 }

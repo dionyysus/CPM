@@ -17,12 +17,12 @@ public class ProjectDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "project_id")
-    private int projectId;
+    private int id;
 
-    private String projectName;
-    private String projectPlatform;
-    private Date projectDeadline;
+    private String name;
+    private String platforms;
+    private Date deadline;
     private String tecnologies;
-    private String projectDescription;
-    private String projectInfo;
+    private String description;
+    private String info;
 }

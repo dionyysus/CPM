@@ -17,10 +17,10 @@ public class Customers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
-    private int customerId;
+    private int id;
 
-    private String customerName;
-    private String customerAddress;
+    private String name;
+    private String address;
 
 
 }

@@ -16,10 +16,10 @@ public class MailDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "mail_id")
-    private int mailId;
+    private int id;
 
     private String description;
-    private String mailAddress;
-    private String mailPassword;
-    private String mailServerRegistration;
+    private String address;
+    private String password;
+    private String serverRegistration;
 }

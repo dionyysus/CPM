@@ -15,8 +15,8 @@ public class RelatedPersons {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "related_id")
-    private int relatedId;
+    private int id;
 
-    private String relatedName;
-    private String relatedPhone;
+    private String name;
+    private String phone;
 }
