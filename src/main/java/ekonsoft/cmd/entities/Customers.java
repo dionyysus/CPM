@@ -1,5 +1,6 @@
 package ekonsoft.cmd.entities;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Generated;
@@ -19,8 +20,17 @@ public class Customers {
     @Column(name = "customer_id")
     private int id;
 
+    @Column(name = "customer_name")
+    @NotNull
     private String name;
+
+    @Column(name = "customer_address")
+    @NotNull
     private String address;
+
+    @ManyToOne()
+    @JoinColumn(name = "project_details")
+    private ProjectDetails projectDetails;
 
 
 }

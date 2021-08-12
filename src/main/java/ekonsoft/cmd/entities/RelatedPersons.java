@@ -1,5 +1,6 @@
 package ekonsoft.cmd.entities;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,15 @@ public class RelatedPersons {
     @Column(name = "related_id")
     private int id;
 
+    @Column(name = "related_name")
+    @NotNull
     private String name;
+
+    @Column(name = "related_phone")
+    @NotNull
     private String phone;
+
+    @ManyToOne()
+    @JoinColumn(name = "project_details")
+    private ProjectDetails projectDetails;
 }

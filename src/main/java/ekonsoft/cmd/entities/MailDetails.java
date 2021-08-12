@@ -1,5 +1,6 @@
 package ekonsoft.cmd.entities;
 
+import com.sun.istack.NotNull;
 import jdk.jfr.DataAmount;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,8 +19,23 @@ public class MailDetails {
     @Column(name = "mail_id")
     private int id;
 
+    @Column(name = "description")
+    @NotNull
     private String description;
+
+    @Column(name = "mail_address")
+    @NotNull
     private String address;
+
+    @Column(name = "mail_password")
+    @NotNull
     private String password;
+
+    @Column(name = "mail_server_registration")
+    @NotNull
     private String serverRegistration;
+
+    @ManyToOne()
+    @JoinColumn(name = "project_details")
+    private ProjectDetails projectDetails;
 }
