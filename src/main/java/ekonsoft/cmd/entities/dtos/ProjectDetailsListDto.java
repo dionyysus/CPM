@@ -9,13 +9,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProjectDetailsDto {
+public class ProjectDetailsListDto {
 
     private String name;
     private String platforms;
@@ -23,7 +22,9 @@ public class ProjectDetailsDto {
     private String tecnologies;
     private String description;
     private String info;
-    private boolean isActive;
 
-
+    private List<Customers> customers;
+    private List<Domains> domains;
+    private List<MailDetails> mailDetails;
+    private List<RelatedPersons> relatedPersons;
 }

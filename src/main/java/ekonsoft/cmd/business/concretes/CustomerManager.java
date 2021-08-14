@@ -1,6 +1,7 @@
 package ekonsoft.cmd.business.concretes;
 
 import ekonsoft.cmd.business.abstracts.CustomerService;
+import ekonsoft.cmd.business.abstracts.ProjectDetailService;
 import ekonsoft.cmd.core.utilities.result.DataResult;
 import ekonsoft.cmd.core.utilities.result.Result;
 import ekonsoft.cmd.core.utilities.result.SuccessDataResult;
@@ -9,6 +10,7 @@ import ekonsoft.cmd.dataAccess.abstracts.CustomersDao;
 import ekonsoft.cmd.entities.concretes.Customers;
 import ekonsoft.cmd.entities.dtos.CustomerDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,18 +19,19 @@ import java.util.List;
 public class CustomerManager implements CustomerService {
 
     private CustomersDao customersDao;
+    private ProjectDetailService projectDetailService;
 
     @Autowired
-    public CustomerManager(CustomersDao customersDao) {
-        super();
+    public CustomerManager(CustomersDao customersDao, ProjectDetailService projectDetailService) {
         this.customersDao = customersDao;
+        this.projectDetailService = projectDetailService;
     }
 
     @Override
     public Result add(CustomerDto customerDto) {
 
         Customers customers = new Customers();
-        customers.setProjectDetails(this.customersDao.findById(customerDto.getId()).get().getProjectDetails());
+        customers.setProjectDetails(projectDetailService.getById(customerDto.getProjectDetailsId()).getData());
         customers.setName(customerDto.getName());
         customers.setAddress(customerDto.getAddress());
 
@@ -44,8 +47,14 @@ public class CustomerManager implements CustomerService {
 
 
     @Override
-    public Result update(Customers customers) {
-        this.customersDao.save(customers);
+    public Result update(CustomerDto customerDto, int id) {
+
+        Customers customers = customersDao.getById(id);
+
+        customers.setAddress(customerDto.getAddress());
+        customers.setName(customerDto.getName());
+
+        customersDao.save(customers);
         return new SuccessResult("Customer updated");
     }
 
@@ -57,6 +66,11 @@ public class CustomerManager implements CustomerService {
     @Override
     public DataResult<List<Customers>> getAll() {
         return new SuccessDataResult<List<Customers>>(this.customersDao.findAll());
+    }
+
+    @Override
+    public DataResult<List<Customers>> getByProjectDetailsId(int id) {
+        return new SuccessDataResult<List<Customers>>(this.customersDao.getByProjectDetailsId(id));
     }
 
 

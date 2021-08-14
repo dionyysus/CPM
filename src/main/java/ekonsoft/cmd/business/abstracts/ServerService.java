@@ -11,9 +11,10 @@ import java.util.List;
 public interface ServerService {
 
     Result add(ServersDto serversDto);
-    Result update(Servers servers);
+    Result update(ServersDto serversDto, int id);
     Result delete(int id);
     DataResult<Servers> getById(int id);
     DataResult<List<Servers>> getAll();
+    DataResult<List<Servers>>getByProjectDetailsId(int id);
 
 }

@@ -12,9 +12,11 @@ import java.util.List;
 public interface RelatedPersonService {
 
     Result add(RelatedPersonDto relatedPersonDto);
-    Result update(RelatedPersons relatedPersons);
+    Result update(RelatedPersonDto relatedPersonDto, int id);
     Result delete(int id);
     DataResult<RelatedPersons> getById(int id);
     DataResult<List<RelatedPersons>> getAll();
+    DataResult<List<RelatedPersons>>getByProjectDetailsId(int id);
+
 
 }

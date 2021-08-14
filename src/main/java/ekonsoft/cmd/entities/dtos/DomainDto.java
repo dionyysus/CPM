@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DomainDto {
 
-    private int id;
     private String domainRegistration;
-    private String projectDetails;
+    private int id;
+
 }

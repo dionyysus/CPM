@@ -3,6 +3,7 @@ package ekonsoft.cmd.api.controllers;
 import ekonsoft.cmd.business.abstracts.WebPanelService;
 import ekonsoft.cmd.core.utilities.result.DataResult;
 import ekonsoft.cmd.core.utilities.result.Result;
+import ekonsoft.cmd.entities.concretes.Customers;
 import ekonsoft.cmd.entities.concretes.WebPanels;
 import ekonsoft.cmd.entities.dtos.WebPanelsDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,19 @@ public class WebPanelController {
         return this.webPanelService.getAll();
     }
 
-    @PostMapping("/add/{id}")
+    @PostMapping("/add")
     public Result add(@RequestBody WebPanelsDto webPanelsDto){
         return this.webPanelService.add(webPanelsDto);
+    }
+
+    @PostMapping("/update")
+    public Result update(@RequestBody WebPanelsDto webPanelsDto, int id){
+        return this.webPanelService.update(webPanelsDto,id);
+    }
+
+    @GetMapping("getByProjectDetailsId")
+    public DataResult<List<WebPanels>> getByProjectDetailsId(@RequestParam int id){
+        return this.webPanelService.getByProjectDetailsId(id);
     }
 
 }

@@ -1,5 +1,6 @@
 package ekonsoft.cmd.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,6 +36,7 @@ public class MailDetails {
     private String serverRegistration;
 
     @ManyToOne()
+    @JsonIgnore
     @JoinColumn(name = "project_id")
     private ProjectDetails projectDetails;
 }

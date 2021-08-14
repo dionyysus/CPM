@@ -29,8 +29,17 @@ public class RelatedPersonsController {
         return this.relatedPersonService.getAll();
     }
 
-    @PostMapping("/add/{id}")
+    @PostMapping("/add")
     public Result add(@RequestBody RelatedPersonDto relatedPersonDto){
         return this.relatedPersonService.add(relatedPersonDto);
+    }
+
+    @PostMapping("/update")
+    public Result update(@RequestBody RelatedPersonDto relatedPersonDto,int id){
+        return this.relatedPersonService.update(relatedPersonDto,id);
+    }
+    @GetMapping("getByProjectDetailsId")
+    public DataResult<List<RelatedPersons>> getByProjectDetailsId(@RequestParam int id){
+        return this.relatedPersonService.getByProjectDetailsId(id);
     }
 }

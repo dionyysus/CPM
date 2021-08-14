@@ -1,5 +1,7 @@
 package ekonsoft.cmd.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "project_details")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "domains", "mailDetails", "relatedPersons", "servers", "webPanels", "customers" })
 public class ProjectDetails {
 
     @Id
@@ -31,7 +34,7 @@ public class ProjectDetails {
 
     @Column(name = "project_deadline")
     @NotNull
-    private Date deadline;
+    private String deadline;
 
     @Column(name = "technologies")
     @NotNull
@@ -45,6 +48,9 @@ public class ProjectDetails {
     @NotNull
     private String info;
 
+    @Column(name = "isActive")
+    @NotNull
+    private boolean isActive;
 
     @OneToMany(mappedBy = "projectDetails")
     private List<Domains> domains;
@@ -61,7 +67,8 @@ public class ProjectDetails {
     @OneToMany(mappedBy = "projectDetails")
     private List<WebPanels> webPanels;
 
-    @ManyToOne()
-    @JoinColumn(name = "customer_id")
-    private Customers customers;
+    @OneToMany(mappedBy = "projectDetails")
+    private List<Customers> customers;
+
+
 }

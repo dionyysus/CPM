@@ -12,8 +12,10 @@ public interface MailDetailService {
 
     Result add(MailDetailsDto mailDetailsDto);
     Result delete(int id);
-    Result update(MailDetails mailDetails);
+    Result update(MailDetailsDto mailDetailsDto, int id);
     DataResult<MailDetails> getById(int id);
     DataResult<List<MailDetails>> getAll();
+    DataResult<List<MailDetails>>getByProjectDetailsId(int id);
+
 
 }

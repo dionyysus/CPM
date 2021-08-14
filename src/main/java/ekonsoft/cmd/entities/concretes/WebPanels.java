@@ -1,5 +1,6 @@
 package ekonsoft.cmd.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import ekonsoft.cmd.entities.concretes.ProjectDetails;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,7 @@ public class WebPanels {
     private String password;
 
     @ManyToOne()
+    @JsonIgnore
     @JoinColumn(name = "project_id")
     private ProjectDetails projectDetails;
 

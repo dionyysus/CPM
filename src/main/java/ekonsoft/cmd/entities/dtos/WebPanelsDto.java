@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class WebPanelsDto {
 
-    private int id;
     private String username;
     private String password;
+    private int id;
 
 }

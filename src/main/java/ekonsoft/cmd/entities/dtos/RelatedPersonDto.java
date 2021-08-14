@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RelatedPersonDto {
 
-    private int id;
     private String name;
     private String phone;
+    private int id;
+
 }

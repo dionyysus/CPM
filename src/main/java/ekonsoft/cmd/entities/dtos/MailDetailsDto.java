@@ -10,11 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MailDetailsDto {
 
-    private int id;
     private String description;
     private String address;
     private String password;
     private String serverRegistration;
-    private String projectDetails;
+    private int id;
 
 }

@@ -1,12 +1,14 @@
 package ekonsoft.cmd.business.concretes;
 
 import ekonsoft.cmd.business.abstracts.MailDetailService;
+import ekonsoft.cmd.business.abstracts.ProjectDetailService;
 import ekonsoft.cmd.business.abstracts.RelatedPersonService;
 import ekonsoft.cmd.core.utilities.result.DataResult;
 import ekonsoft.cmd.core.utilities.result.Result;
 import ekonsoft.cmd.core.utilities.result.SuccessDataResult;
 import ekonsoft.cmd.core.utilities.result.SuccessResult;
 import ekonsoft.cmd.dataAccess.abstracts.RelatedPersonsDao;
+import ekonsoft.cmd.entities.concretes.Customers;
 import ekonsoft.cmd.entities.concretes.RelatedPersons;
 import ekonsoft.cmd.entities.dtos.RelatedPersonDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +20,20 @@ import java.util.List;
 public class RelatedPersonManager implements RelatedPersonService {
 
     private RelatedPersonsDao relatedPersonsDao;
+    private ProjectDetailService projectDetailService;
 
     @Autowired
-    public RelatedPersonManager(RelatedPersonsDao relatedPersonsDao) {
+    public RelatedPersonManager(RelatedPersonsDao relatedPersonsDao, ProjectDetailService projectDetailService) {
         this.relatedPersonsDao = relatedPersonsDao;
+        this.projectDetailService = projectDetailService;
     }
 
     @Override
     public Result add(RelatedPersonDto relatedPersonDto) {
 
         RelatedPersons relatedPersons = new RelatedPersons();
-        relatedPersons.setProjectDetails(this.relatedPersonsDao.findById(relatedPersonDto.getId()).get().getProjectDetails());
+        relatedPersons.setProjectDetails(projectDetailService.getById(relatedPersonDto.getId()).getData());
+
         relatedPersons.setName(relatedPersonDto.getName());
         relatedPersons.setPhone(relatedPersonDto.getPhone());
 
@@ -37,10 +42,17 @@ public class RelatedPersonManager implements RelatedPersonService {
     }
 
     @Override
-    public Result update(RelatedPersons relatedPersons) {
-        this.relatedPersonsDao.save(relatedPersons);
+    public Result update(RelatedPersonDto relatedPersonDto, int id) {
+
+        RelatedPersons relatedPersons = relatedPersonsDao.getById(id);
+
+        relatedPersons.setName(relatedPersonDto.getName());
+        relatedPersons.setPhone(relatedPersonDto.getPhone());
+
+        relatedPersonsDao.save(relatedPersons);
         return new SuccessResult("Related person updated");
     }
+
 
     @Override
     public Result delete(int id) {
@@ -56,5 +68,10 @@ public class RelatedPersonManager implements RelatedPersonService {
     @Override
     public DataResult<List<RelatedPersons>> getAll() {
         return new SuccessDataResult<List<RelatedPersons>>(this.relatedPersonsDao.findAll());
+    }
+
+    @Override
+    public DataResult<List<RelatedPersons>> getByProjectDetailsId(int id) {
+        return new SuccessDataResult<List<RelatedPersons>>(this.relatedPersonsDao.getByProjectDetailsId(id));
     }
 }

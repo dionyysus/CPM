@@ -3,6 +3,7 @@ package ekonsoft.cmd.api.controllers;
 import ekonsoft.cmd.business.abstracts.DomainService;
 import ekonsoft.cmd.core.utilities.result.DataResult;
 import ekonsoft.cmd.core.utilities.result.Result;
+import ekonsoft.cmd.entities.concretes.Customers;
 import ekonsoft.cmd.entities.concretes.Domains;
 import ekonsoft.cmd.entities.dtos.DomainDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,4 +32,15 @@ public class DomainController {
     public Result add(@RequestBody DomainDto domainDto){
         return this.domainService.add(domainDto);
     }
+
+    @PostMapping("/update")
+    public Result update(@RequestBody DomainDto domainDto, int id){
+        return this.domainService.update(domainDto,id);
+    }
+
+    @GetMapping("getByProjectDetailsId")
+    public DataResult<List<Domains>> getByProjectDetailsId(@RequestParam int id){
+        return this.domainService.getByProjectDetailsId(id);
+    }
+
 }

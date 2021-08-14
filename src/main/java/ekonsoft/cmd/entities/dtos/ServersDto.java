@@ -10,11 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ServersDto {
 
-    private int id;
     private String name;
     private String password;
     private String address;
     private String registration;
     private String ip;
     private String panelAdress;
+    private int id;
+
 }

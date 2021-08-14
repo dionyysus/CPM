@@ -22,13 +22,25 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping("/getall")
+    @GetMapping("getall")
     public DataResult<List<Customers>> getAll(){
         return this.customerService.getAll();
     }
 
-    @PostMapping("/add/{id}")
+    @PostMapping("add")
     public Result add(@RequestBody CustomerDto customerDto){
         return this.customerService.add(customerDto);
     }
+
+    @PostMapping("update")
+    public Result update(@RequestBody CustomerDto customerDto, int id){
+        return this.customerService.update(customerDto,id);
+    }
+
+    @GetMapping("getByProjectDetailsId")
+    public DataResult<List<Customers>> getByProjectDetailsId(@RequestParam int id){
+        return this.customerService.getByProjectDetailsId(id);
+    }
+
+
 }

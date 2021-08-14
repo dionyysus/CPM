@@ -1,5 +1,6 @@
 package ekonsoft.cmd.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import ekonsoft.cmd.entities.concretes.ProjectDetails;
 import lombok.AllArgsConstructor;
@@ -14,6 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RelatedPersons {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "related_id")
@@ -28,6 +30,7 @@ public class RelatedPersons {
     private String phone;
 
     @ManyToOne
-    @JoinColumn(name = "project_id" ,nullable=false)
+    @JsonIgnore
+    @JoinColumn(name = "project_id")
     private ProjectDetails projectDetails;
 }

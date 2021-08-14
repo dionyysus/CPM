@@ -10,10 +10,11 @@ import java.util.List;
 
 public interface DomainService {
 
-    Result add(DomainDto domainDtoa);
-    Result update(Domains domains);
+    Result add(DomainDto domainDto);
+    Result update(DomainDto domainDto, int id);
     Result delete(int id);
     DataResult<Domains> getById(int id);
     DataResult<List<Domains>> getAll();
+    DataResult<List<Domains>>getByProjectDetailsId(int id);
 
 }
