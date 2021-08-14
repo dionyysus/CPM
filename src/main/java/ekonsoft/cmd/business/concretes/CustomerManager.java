@@ -7,6 +7,7 @@ import ekonsoft.cmd.core.utilities.result.SuccessDataResult;
 import ekonsoft.cmd.core.utilities.result.SuccessResult;
 import ekonsoft.cmd.dataAccess.abstracts.CustomersDao;
 import ekonsoft.cmd.entities.concretes.Customers;
+import ekonsoft.cmd.entities.dtos.CustomerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,13 @@ public class CustomerManager implements CustomerService {
     }
 
     @Override
-    public Result add(Customers customers) {
+    public Result add(CustomerDto customerDto) {
+
+        Customers customers = new Customers();
+        customers.setProjectDetails(this.customersDao.findById(customerDto.getId()).get().getProjectDetails());
+        customers.setName(customerDto.getName());
+        customers.setAddress(customerDto.getAddress());
+
         this.customersDao.save(customers);
         return new SuccessResult("Customer added");
     }

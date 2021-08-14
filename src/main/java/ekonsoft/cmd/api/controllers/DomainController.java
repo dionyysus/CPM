@@ -4,6 +4,7 @@ import ekonsoft.cmd.business.abstracts.DomainService;
 import ekonsoft.cmd.core.utilities.result.DataResult;
 import ekonsoft.cmd.core.utilities.result.Result;
 import ekonsoft.cmd.entities.concretes.Domains;
+import ekonsoft.cmd.entities.dtos.DomainDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,7 @@ public class DomainController {
     }
 
     @PostMapping("/add")
-    public Result add(@RequestBody Domains domains){
-        return this.domainService.add(domains);
+    public Result add(@RequestBody DomainDto domainDto){
+        return this.domainService.add(domainDto);
     }
 }

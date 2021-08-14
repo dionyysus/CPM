@@ -8,6 +8,7 @@ import ekonsoft.cmd.core.utilities.result.SuccessResult;
 import ekonsoft.cmd.dataAccess.abstracts.DomainsDao;
 import ekonsoft.cmd.entities.concretes.Customers;
 import ekonsoft.cmd.entities.concretes.Domains;
+import ekonsoft.cmd.entities.dtos.DomainDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,12 @@ public class DomainManager implements DomainService {
     }
 
     @Override
-    public Result add(Domains domains) {
+    public Result add(DomainDto domainDto) {
+
+        Domains domains = new Domains();
+        domains.setProjectDetails(this.domainsDao.findById(domainDto.getId()).get().getProjectDetails());
+        domains.setDomainRegistration(domainDto.getDomainRegistration());
+
         this.domainsDao.save(domains);
         return new SuccessResult("Domain added");
     }

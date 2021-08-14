@@ -7,6 +7,7 @@ import ekonsoft.cmd.core.utilities.result.SuccessDataResult;
 import ekonsoft.cmd.core.utilities.result.SuccessResult;
 import ekonsoft.cmd.dataAccess.abstracts.MailDetailsDao;
 import ekonsoft.cmd.entities.concretes.MailDetails;
+import ekonsoft.cmd.entities.dtos.MailDetailsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,14 @@ public class MailDetailManager implements MailDetailService {
 
 
     @Override
-    public Result add(MailDetails mailDetails) {
+    public Result add(MailDetailsDto mailDetailsDto) {
+
+        MailDetails mailDetails = new MailDetails();
+        mailDetails.setProjectDetails(this.mailDetailsDao.findById(mailDetailsDto.getId()).get().getProjectDetails());
+        mailDetails.setAddress(mailDetailsDto.getAddress());
+        mailDetails.setDescription(mailDetailsDto.getDescription());
+        mailDetailsDto.setServerRegistration(mailDetailsDto.getServerRegistration());
+        mailDetailsDto.setPassword(mailDetailsDto.getPassword());
         this.mailDetailsDao.save(mailDetails);
         return new SuccessResult("Mail added");
     }

@@ -4,12 +4,13 @@ import ekonsoft.cmd.core.utilities.result.DataResult;
 import ekonsoft.cmd.core.utilities.result.Result;
 import ekonsoft.cmd.entities.concretes.Customers;
 import ekonsoft.cmd.entities.concretes.Domains;
+import ekonsoft.cmd.entities.dtos.DomainDto;
 
 import java.util.List;
 
 public interface DomainService {
 
-    Result add(Domains domains);
+    Result add(DomainDto domainDtoa);
     Result update(Domains domains);
     Result delete(int id);
     DataResult<Domains> getById(int id);

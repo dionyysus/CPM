@@ -8,6 +8,7 @@ import ekonsoft.cmd.core.utilities.result.SuccessDataResult;
 import ekonsoft.cmd.core.utilities.result.SuccessResult;
 import ekonsoft.cmd.dataAccess.abstracts.RelatedPersonsDao;
 import ekonsoft.cmd.entities.concretes.RelatedPersons;
+import ekonsoft.cmd.entities.dtos.RelatedPersonDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,13 @@ public class RelatedPersonManager implements RelatedPersonService {
     }
 
     @Override
-    public Result add(RelatedPersons relatedPersons) {
+    public Result add(RelatedPersonDto relatedPersonDto) {
+
+        RelatedPersons relatedPersons = new RelatedPersons();
+        relatedPersons.setProjectDetails(this.relatedPersonsDao.findById(relatedPersonDto.getId()).get().getProjectDetails());
+        relatedPersons.setName(relatedPersonDto.getName());
+        relatedPersons.setPhone(relatedPersonDto.getPhone());
+
         this.relatedPersonsDao.save(relatedPersons);
         return new SuccessResult("Related person added");
     }

@@ -7,6 +7,7 @@ import ekonsoft.cmd.core.utilities.result.SuccessDataResult;
 import ekonsoft.cmd.core.utilities.result.SuccessResult;
 import ekonsoft.cmd.dataAccess.abstracts.ServersDao;
 import ekonsoft.cmd.entities.concretes.Servers;
+import ekonsoft.cmd.entities.dtos.ServersDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,17 @@ public class ServerManager implements ServerService {
     }
 
     @Override
-    public Result add(Servers servers) {
+    public Result add(ServersDto serversDto) {
+
+        Servers servers = new Servers();
+        servers.setProjectDetails(this.serversDao.findById(serversDto.getId()).get().getProjectDetails());
+        servers.setAddress(serversDto.getAddress());
+        servers.setName(serversDto.getName());
+        servers.setIp(serversDto.getIp());
+        servers.setPanelAdress(serversDto.getPanelAdress());
+        servers.setPassword(serversDto.getPassword());
+        servers.setRegistration(serversDto.getRegistration());
+
         this.serversDao.save(servers);
         return new SuccessResult("Server added");
     }
